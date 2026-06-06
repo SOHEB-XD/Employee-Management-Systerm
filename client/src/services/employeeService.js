@@ -2,7 +2,6 @@ import axios from "axios";
 
 const API = import.meta.env.VITE_API_URL;
 
-export const getEmployees = () => axios.get(API);
 
 export const getEmployee = (id) =>
   axios.get(`${API}/${id}`);
