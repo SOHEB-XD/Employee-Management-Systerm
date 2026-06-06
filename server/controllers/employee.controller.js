@@ -1,6 +1,5 @@
 const Employee = require("../models/employee.model");
 
-// CREATING NEW EMPLOYEE IN THE DATABASE
 /**
  * @description Api to get data from the frontend and create and store employee in the database
  */
