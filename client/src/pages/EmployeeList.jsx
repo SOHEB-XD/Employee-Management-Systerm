@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getEmployees, deleteEmployee } from "../services/employeeService";
+import { deleteEmployee } from "../services/employeeService";
 import axios from "axios";
 
 const EmployeeList = () => {
