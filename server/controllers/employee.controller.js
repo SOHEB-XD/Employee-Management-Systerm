@@ -1,6 +1,9 @@
 const Employee = require("../models/employee.model");
 
 // CREATING NEW EMPLOYEE IN THE DATABASE
+/**
+ * @description Api to get data from the frontend and create and store employee in the database
+ */
 const createEmployee = async (req, res) => {
   try {
     const employee = await Employee.create(req.body);
@@ -17,38 +20,21 @@ const createEmployee = async (req, res) => {
   }
 };
 
-// TO GET ALL EMPLOYEE FROM THE DATABASE
+
+/**
+ * @description FUNCTION TO GET ALL EMPLOYEE FROM THE DATABASE 
+ */
 const getEmployees = async (req, res) => {
   try {
     const {
-      search,
-      department,
       page = 1,
-      limit = 100,  
-      sort,
+      limit = 100
     } = req.query;
 
     let query = {};
 
-    // Search
-    if (search) {
-      query.fullName = {
-        $regex: search,
-        $options: "i",
-      };
-    }
-
-    // Department Filter
-    if (department) {
-      query.department = department;
-    }
-
     let employeeQuery = Employee.find(query);
 
-    // Sorting
-    if (sort) {
-      employeeQuery = employeeQuery.sort(sort);
-    }
 
     // Pagination
     const skip = (page - 1) * limit;
@@ -76,7 +62,11 @@ const getEmployees = async (req, res) => {
   }
 };
 
-// TO GET SINGLE EMPLOYEE
+
+/**
+ * @description FUNCTION TO GET SINGLE EMPLOYEE FROM THE DATABASE
+ */
+
 const getEmployee = async (req, res) => {
   try {
     const employee = await Employee.findById(req.params.id);
@@ -100,7 +90,11 @@ const getEmployee = async (req, res) => {
   }
 };
 
-// TO UPDATE AN EMPLOYEE DETAILS
+
+/**
+ * @description FUNCTION TO UPDATE AN EMPLOYEE DETAILS IN THE DATABASE
+ */
+
 const updateEmployee = async (req, res) => {
   try {
     const employee = await Employee.findByIdAndUpdate(
@@ -131,7 +125,11 @@ const updateEmployee = async (req, res) => {
   }
 };
 
-// TO DELETE AN EMPLOYEE
+
+/**
+ * @description FUNCTION TO DELETE AN EMPLOYEE FROM THE DATABASE
+ */
+
 const deleteEmployee = async (req, res) => {
   try {
     const employee = await Employee.findByIdAndDelete(req.params.id);
